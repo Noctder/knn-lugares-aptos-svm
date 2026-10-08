@@ -1,0 +1,66 @@
+Lugar,silencio,sombra,aire_acondicionado,soporte_para_trabajar,asientos,asientos_comodos,enchufes,flujo_personas,banos_cerca,cafeteria_cerca,internet_wifi,Target
+Plaza Cosmos,0,0,0,1,1,1,0,0,1,0,1,0
+Laboratorio 4 de posgrado,1,1,1,1,1,1,1,1,1,0,1,1
+Domo de enfermeria,0,1,1,0,1,0,0,0,1,1,1,0
+Mesas de trabajo social,0,1,1,1,1,1,1,0,1,0,1,1
+Medios didacticos,1,1,1,0,1,1,0,1,1,0,1,0
+Laboratiorio telemática (interior del edificio),1,1,1,1,1,1,1,0,1,0,1,1
+Servicios estudiantiles,0,1,1,1,1,1,0,0,1,1,1,1
+Mesas de economia,0,1,1,1,1,1,0,0,1,1,1,1
+Atrás de servicios,1,0,0,1,1,1,0,1,0,1,1,1
+Bliblioteca de medicina,1,1,1,1,1,1,1,0,1,0,1,1
+Bancas verdes jungla cerca de contabilidad ,0,1,0,0,1,1,0,0,0,0,0,0
+Biblioteca de bachilleratos,1,1,1,1,1,1,1,0,1,0,1,1
+Pasto de contabilidad ,1,1,0,0,0,0,0,1,0,1,1,0
+Rocas abajo de arboles cerca de direccion letras y comunicacion,1,1,0,0,0,0,0,0,1,0,1,0
+Plaza estatuas,0,0,0,0,1,0,1,1,0,0,1,0
+Cafeteria medicina,0,1,0,1,1,1,0,1,0,1,1,1
+Cafeteria de educacion fisica,0,1,0,1,1,1,0,1,0,1,1,1
+La celda Cenedic,1,1,1,1,1,1,1,0,1,0,1,1
+Mesas al lado del starvocho,0,0,0,1,1,1,0,1,1,1,1,0
+Centro de computo de trabajo social,0,1,1,1,1,1,1,0,0,0,1,1
+Bancas verdes centro de idiomas,0,0,0,0,1,0,0,1,0,0,1,0
+Bancas facultad de mercadotecnia,0,0,0,0,1,0,0,1,0,1,1,0
+Cafetería de mercadotecnia,0,1,0,1,1,0,0,1,0,1,1,1
+Laboratorio computo mercadotecnia,1,1,1,1,1,1,1,0,1,0,1,1
+Laboratorio de publicidad,1,1,1,1,1,1,1,0,1,0,1,1
+Sillones telemática,0,1,0,1,1,1,1,1,1,0,1,1
+Bancas dentro de telemática,0,1,0,1,1,1,1,1,1,0,1,1
+Sombrillas telemática,0,1,0,1,1,1,1,1,1,0,1,1
+Laboratorio 3 Posgrado,0,1,1,1,1,1,1,0,1,0,1,1
+Laboratorio Redes telemática,1,1,1,1,1,1,1,0,1,0,1,1
+Laboratorio de Macs Telemática,1,1,1,1,1,1,1,0,1,0,1,1
+Amacas psicología,0,1,0,1,1,1,1,0,1,0,1,1
+Aula 3 Posgrado,1,1,1,1,1,1,1,0,1,0,1,1
+Auditorio 1 telemática,0,1,1,1,1,0,0,1,1,0,1,1
+Bancas Edificio Media Superior,0,1,0,0,1,0,0,1,0,0,1,0
+Bancas al lado de la explanada de Contabilidad,0,0,0,1,1,0,0,1,0,1,1,0
+Escaleras del Auditorio Benjamín fuentes González,0,0,0,0,1,0,0,1,1,1,1,0
+Papeleria de servicios escolares,0,1,1,0,0,0,0,1,1,1,1,0
+Silla de lapices ,0,1,0,0,1,0,0,1,1,1,1,0
+Bancas centro del campus,0,0,0,0,1,0,0,1,0,0,1,0
+Aula 2 de posgrado de telemática,1,1,1,1,1,1,1,0,1,1,1,1
+Bancas Interior del edificio Administrativo y Financiero,1,1,1,0,1,1,0,1,1,1,1,0
+Aula 3 de posgrado de telemática,1,1,1,1,1,1,1,1,1,1,1,1
+Baños de lic telematica,0,1,0,0,0,0,0,0,0,0,1,0
+Baño de posgrado de telématica,0,1,0,0,0,0,0,0,1,0,1,0
+Cubiculos de la bibloteca de medicina,1,1,1,1,1,1,1,0,1,1,1,1
+Salon de danza- Facultad de Educación,1,1,1,0,0,0,1,1,1,1,1,0
+Sala de exdirectores,1,1,1,1,1,1,1,0,1,0,1,1
+Aulas del Centro especializado de Idiomas,1,1,1,1,1,1,1,0,1,1,1,1
+Corredor del Centro especializado de Idiomas,1,1,1,0,1,1,0,1,1,1,1,0
+Biblioteca del Centro especializado de Idiomas,1,1,1,1,1,1,0,0,1,1,1,1
+Sala de Lectura Centro especializado de Idiomas,1,1,1,1,1,1,1,0,1,1,1,1
+Salita a un lado de laboratorio de sistemas en telématica,1,1,1,1,1,1,1,0,1,1,1,1
+Arbol a un lado de telematica #1,0,0,0,0,0,0,0,1,0,0,1,0
+Arbol a un lado de telematica #2,0,0,0,0,0,0,0,1,0,0,1,0
+Arbol de guamuchil,0,0,0,0,0,0,0,1,0,0,1,0
+Sillon en el edificio de idiomas,0,1,1,0,1,1,1,0,1,0,1,0
+Escaleras facultad de medicina ,0,1,0,0,1,0,0,1,1,0,1,0
+Bancas de pasillo en trabajo social ,0,1,0,0,1,1,0,1,1,0,1,0
+Escaleras del area de Psicologia ,0,1,0,0,1,0,0,1,1,0,1,0
+Abajo de los Arboles del estacionamiento maestros ,1,1,0,0,0,0,0,1,0,1,0,0
+Parada de autobús Paraninfo,0,1,0,0,1,0,1,1,0,1,0,0
+Cafetería el Sazón,0,1,1,1,1,1,1,1,1,1,1,1
+Baños Lic Periodismo,1,1,1,0,0,0,0,0,1,0,1,0
+Mesas de madera Contabilidad,1,1,0,1,1,0,0,1,1,1,1,1
