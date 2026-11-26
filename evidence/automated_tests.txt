@@ -1,0 +1,9 @@
+test_form_has_exact_columns (test_app.InferenceTests.test_form_has_exact_columns) ... ok
+test_invalid_values_never_reach_model (test_app.InferenceTests.test_invalid_values_never_reach_model) ... ok
+test_response_uses_model_prediction (test_app.InferenceTests.test_response_uses_model_prediction) ... ok
+test_three_predictions_match_saved_model (test_app.InferenceTests.test_three_predictions_match_saved_model) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.621s
+
+OK

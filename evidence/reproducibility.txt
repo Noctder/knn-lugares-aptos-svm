@@ -1,0 +1,15 @@
+Verificación 2026-11-26, Python 3.12
+Copia limpia sin .venv ni .git.
+Creación de entorno nuevo e instalación exclusiva desde requirements.txt.
+Sin notebook, exportación ni entrenamiento durante la verificación.
+Se usó el puerto alternativo 5001 documentado en README.
+La primera comprobación excedió 20 segundos; se amplió la espera de arranque y se verificaron los dos ciclos completos.
+Arranque 1: GET / HTTP 200
+  POST Laboratorio 4 de posgrado: HTTP 200, APTO
+  POST Bancas verdes centro de idiomas: HTTP 200, NO APTO
+  POST Atrás de servicios: HTTP 200, APTO
+Arranque 2: GET / HTTP 200
+  POST Laboratorio 4 de posgrado: HTTP 200, APTO
+  POST Bancas verdes centro de idiomas: HTTP 200, NO APTO
+  POST Atrás de servicios: HTTP 200, APTO
+No broken requirements found.

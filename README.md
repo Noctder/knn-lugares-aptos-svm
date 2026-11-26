@@ -1,88 +1,84 @@
-# ¿Puede un robot aprender dónde trabajar? KNN desde cero vs SVM
+# StudyBot: del modelo a una aplicación Flask
 
-Proyecto de la primera evaluación parcial de **Aprendizaje Artificial 2026**.
+Aplicación de la tercera entrega de **Aprendizaje Artificial 2026**, Universidad de Colima. Equipo 4: Francisco Javier Zuñiga Milanez y Hugo Rafael Preciado Marquez. Profesor: Pedro Cesar Santana Mancilla.
 
-| | |
-|---|---|
-| **Integrantes (Equipo 4)** | Francisco Javier Zuñiga Milanez, Hugo Rafael Preciado Marquez |
-| **Profesor** | Pedro Cesar Santana Mancilla |
-| **Materia** | Aprendizaje Artificial |
-| **Maestría** | Aprendizaje Artificial, Universidad de Colima |
-| **Modelo asignado** | Support Vector Machine (SVM) |
+El formulario utiliza el **SVM lineal** de la segunda entrega para clasificar lugares como **APTO / NO APTO** para trabajar durante 30 minutos. Mantiene las 11 variables del Dataset v1.0, sus nombres, orden y valores binarios. No agrega temperatura ni ruido.
 
-## Descripción del problema
+## Ejecutar localmente
 
-En la primera actividad del curso se definieron reglas manuales para decidir si un lugar del campus es **Apto** o **No apto** para que un robot trabaje durante 30 minutos. En este proyecto se retoma el mismo problema con Machine Learning: se implementa un clasificador **K-Nearest Neighbors (KNN) desde cero**, se compara con el KNN de scikit-learn y con un **SVM**, y se analiza qué decisiones sobre los datos y el modelo afectan los resultados.
-
-## Dataset
-
-Se usa el **Dataset v1.0** construido por todo el grupo y publicado en Kaggle:
-[Lugares aptos para trabajar](https://www.kaggle.com/datasets/schiaffino89/lugares-aptos-para-trabajar) (archivo `Dataset v1.0.csv`). En la carpeta `data/` se incluye una copia de esa misma versión.
-
-- 65 lugares y 11 variables binarias (1 = tiene la característica, 0 = no la tiene): `silencio`, `sombra`, `aire_acondicionado`, `soporte_para_trabajar`, `asientos`, `asientos_comodos`, `enchufes`, `flujo_personas`, `banos_cerca`, `cafeteria_cerca`, `internet_wifi`.
-- Variable objetivo `Target`: 1 = Apto (34 lugares, 52.3%), 0 = No apto (31 lugares, 47.7%).
-- La columna `Lugar` solo es el nombre del sitio y no se usa para clasificar.
-
-## Estructura del repositorio
-
-```
-├── README.md
-├── requirements.txt
-├── Proyecto_InteligenciaArtificial.ipynb   # notebook con todo el proyecto
-└── data/
-    └── Dataset v1.0.csv         # copia del Dataset v1.0
-```
-
-## Cómo ejecutar el proyecto
-
-**Opción 1: Google Colab (recomendada)**
-
-1. Abrir el notebook en Colab (botón *Open in Colab* de GitHub o subir el archivo `.ipynb`).
-2. Ejecutar todas las celdas en orden (*Entorno de ejecución > Ejecutar todas*).
-3. El dataset se descarga solo desde Kaggle con `kagglehub`.
-
-**Opción 2: Local**
+Requisito: **Python 3.12** (versión usada para verificar la entrega).
 
 ```bash
-pip install -r requirements.txt
-jupyter notebook Proyecto_InteligenciaArtificial.ipynb
+git clone --branch studybot-flask https://github.com/Noctder/knn-lugares-aptos-svm.git
+cd knn-lugares-aptos-svm
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python app.py
 ```
 
-Si no hay conexión a Kaggle, en la celda 1 se puede cargar la copia local:
+En Windows, usa `py -3.12 -m venv .venv` y `.venv\Scripts\activate` para crear y activar el entorno.
 
-```python
-df = pd.read_csv('data/Dataset v1.0.csv')
+Abre **http://127.0.0.1:5000**. Completa todos los campos con `0` o `1` y pulsa **Evaluar lugar**. Detén el servidor con Ctrl+C. Para volver a iniciarlo, activa el entorno y ejecuta `python app.py`. Si el puerto está ocupado: `python -m flask --app app run --port 5001`.
+
+**No necesitas ejecutar el notebook, entrenar ni descargar datos de Kaggle para usar la aplicación.** El archivo `studybot_model.joblib` está incluido. Mantén las versiones indicadas al cargarlo y utiliza únicamente artefactos joblib de confianza.
+
+## Variables y flujo de predicción
+
+Las columnas, en el orden de entrenamiento, son:
+
+```text
+silencio, sombra, aire_acondicionado, soporte_para_trabajar,
+asientos, asientos_comodos, enchufes, flujo_personas,
+banos_cerca, cafeteria_cerca, internet_wifi
 ```
 
-## Metodología
+Son las mismas columnas que obtiene el notebook al excluir `Lugar` y `Target`. `1` indica presencia y `0` ausencia; se conserva la codificación original de `flujo_personas`, sin invertirla. `Target`: 1 = APTO, 0 = NO APTO.
 
-1. **Análisis inicial:** revisión de nulos, duplicados, balance de clases y correlación de cada variable con `Target`.
-2. **KNN desde cero:** distancia euclidiana, ordenar distancias, elegir los k vecinos y votar por mayoría. No se usa `KNeighborsClassifier`.
-3. **División:** 80% entrenamiento (52 lugares) y 20% prueba (13 lugares), con `random_state=42` y `stratify`. La misma división se usa en todos los experimentos.
-4. **Experimentos:** KNN propio con k = 1, 3, 5, 7 y 9; comparación con `KNeighborsClassifier`; y SVM con kernel lineal.
-5. **Métrica:** exactitud (accuracy) en el conjunto de prueba para los tres modelos.
+1. Al importar `app.py`, `load_model()` llama a `joblib.load()` una sola vez. Verifica las columnas y clases del artefacto.
+2. El navegador envía un POST `/` con los nombres de los inputs HTML. Flask los lee desde `request.form`.
+3. `input_frame()` exige valores numéricos finitos 0/1 en todas las columnas. Construye un DataFrame con los nombres y el orden originales. Los errores devuelven HTTP 400 y un mensaje en pantalla, conservando las entradas.
+4. `predict_place(values, model)` llama a `model.predict()` y traduce 0/1 a NO APTO/APTO. Jinja muestra el resultado.
 
-## Principales resultados
+No hay `fit()` ni reglas manuales de clasificación en el flujo de inferencia. No se aplicó escalado, imputación ni selección de características en la segunda entrega: todas las variables ya eran binarias. Por ello se guarda el SVC completo sin añadir un preprocesamiento nuevo.
 
-**KNN propio según k**
+## Procedencia del modelo y exportación
 
-| k | Exactitud entrenamiento | Exactitud prueba |
-|---|---|---|
-| 1 | 1.000 | 0.923 |
-| 3 | 0.923 | 0.923 |
-| 5 | 0.962 | 0.923 |
-| 7 | 0.942 | 0.923 |
-| 9 | 0.923 | 0.923 |
+El repositorio original incluía el entrenamiento en `Proyecto_InteligenciaArtificial (1).ipynb`, pero **no contenía un archivo de modelo entrenado**. Se reconstruyó el artefacto fuera de Flask con el procedimiento original: `SVC(kernel='linear')`, 80/20, `random_state=42`, `stratify=y`, Dataset v1.0 local, sin escalado. Solo se conservaron los nombres en el DataFrame en vez de convertirlo a NumPy; esto no cambia los valores ni el entrenamiento.
 
-**Comparación final (k = 5)**
+El script independiente `scripts/export_model.py` documenta esa reconstrucción, guarda el SVM con joblib, lo recarga y verifica que sus predicciones sobre las 13 filas de prueba coincidan con las anteriores al guardado. Los metadatos y hashes están en `evidence/model_metadata.json`. Es una reproducción del procedimiento, no un archivo recuperado de la sesión original del notebook.
 
-| Modelo | Exactitud en prueba | Lugares mal clasificados |
-|---|---|---|
-| KNN propio | 0.923 | Mesas al lado del starvocho |
-| KNN scikit-learn | 0.923 | Mesas al lado del starvocho |
-| SVM (lineal) | 1.000 | Ninguno |
+Solo si quieres reconstruir el artefacto de forma explícita, fuera del servidor:
 
-- El KNN propio y el de scikit-learn dieron exactamente las mismas predicciones con todos los valores de k.
-- `soporte_para_trabajar` es la variable más importante (correlación de 0.91 con `Target`): ningún lugar sin soporte es Apto.
-- El SVM le dio peso casi solo a `soporte_para_trabajar` y `sombra`, mientras que KNN trata las 11 variables igual. Eso explica por qué el SVM acierta el lugar en el que KNN falla.
-- Con solo 13 lugares de prueba, cada error mueve la exactitud unos 7.7 puntos, así que la diferencia entre KNN y SVM (un lugar) debe tomarse con cautela.
+```bash
+python scripts/export_model.py
+```
+
+La copia del dataset proviene de [Dataset v1.0 en Kaggle](https://www.kaggle.com/datasets/schiaffino89/lugares-aptos-para-trabajar). El análisis de la segunda entrega permanece en el notebook y `ENTREGA_ANTERIOR.md`; sus dependencias separadas están en `requirements-notebook.txt`.
+
+## Pruebas y evidencia
+
+```bash
+python -m unittest discover -s tests -v
+python scripts/record_evidence.py
+```
+
+La evidencia de las tres combinaciones incluye todas las entradas, resultado, interpretación y margen del SVM en `evidence/predictions.json`, y la respuesta HTML de cada POST en `evidence/prueba_1.html`, `prueba_2.html` y `prueba_3.html`. El resumen legible está en **`evidence/PRUEBAS.md`**.
+
+Las pruebas comprueban tres predicciones con el artefacto real, campos exactos, entradas ausentes/no numéricas/no finitas/fuera de dominio, ausencia de entrenamiento durante las peticiones y dependencia del resultado respecto a `model.predict()`.
+
+## Respuestas breves
+
+**1. ¿Qué contiene studybot_model.joblib?** El objeto SVC lineal entrenado: vectores de soporte, coeficientes, intercepto, clases, parámetros y nombres de las 11 características. En este caso no contiene un escalador porque no se utilizó en el entrenamiento.
+
+**2. ¿Por qué no ejecutar fit() dentro de la aplicación?** La aplicación debe reutilizar lo que el modelo ya aprendió. Entrenarlo en las peticiones consume recursos, puede cambiar su comportamiento y deja de ser inferencia reproducible con el artefacto entregado.
+
+**3. ¿Por qué usar exactamente el mismo preprocesamiento?** El modelo aprendió con una representación concreta. Cambiar orden, codificación o escala modifica el significado de las entradas y puede producir predicciones incorrectas. Aquí se conservan los 11 valores binarios sin escalado.
+
+**4. ¿Qué diferencia hay entre Flask local y un despliegue real?** Localmente el servidor se ejecuta en tu equipo y se accede mediante localhost. En producción la aplicación funciona en infraestructura accesible a los usuarios, con un servidor WSGI de producción, HTTPS, configuración, supervisión y gestión de recursos; el servidor de desarrollo de Flask no está preparado para ese uso.
+
+## Alcance y uso de IA
+
+El despliegue en la nube es opcional y no forma parte de esta entrega. La exactitud de la prueba original se basa en solo 13 lugares; no demuestra generalización a cualquier campus. El modelo puede discrepar de las etiquetas, especialmente en combinaciones poco representadas.
+
+Se utilizó IA para revisar el repositorio, generar la implementación Flask, el script de exportación, las pruebas y esta documentación. El equipo debe declarar esta participación y revisar el alcance permitido por la consigna. El flujo anterior explica cómo se carga el modelo, se reciben las entradas y se obtiene la predicción.

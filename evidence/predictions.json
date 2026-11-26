@@ -1,0 +1,69 @@
+{
+  "model_sha256": "86ede73fb77b5b6d11526a32760049c991b1e24789113ea581fb246c20a5548f",
+  "note": "decision_function es un margen firmado del SVM, no una probabilidad. Cero es la frontera.",
+  "tests": [
+    {
+      "lugar": "Laboratorio 4 de posgrado",
+      "inputs": {
+        "silencio": 1,
+        "sombra": 1,
+        "aire_acondicionado": 1,
+        "soporte_para_trabajar": 1,
+        "asientos": 1,
+        "asientos_comodos": 1,
+        "enchufes": 1,
+        "flujo_personas": 1,
+        "banos_cerca": 1,
+        "cafeteria_cerca": 0,
+        "internet_wifi": 1
+      },
+      "prediction": "APTO",
+      "dataset_target": 1,
+      "decision_function": 1.0043839160907653,
+      "interpretation": "Las condiciones del laboratorio coinciden con los patrones aprendidos de lugares aptos.",
+      "http_status": 200
+    },
+    {
+      "lugar": "Bancas verdes centro de idiomas",
+      "inputs": {
+        "silencio": 0,
+        "sombra": 0,
+        "aire_acondicionado": 0,
+        "soporte_para_trabajar": 0,
+        "asientos": 1,
+        "asientos_comodos": 0,
+        "enchufes": 0,
+        "flujo_personas": 1,
+        "banos_cerca": 0,
+        "cafeteria_cerca": 0,
+        "internet_wifi": 1
+      },
+      "prediction": "NO APTO",
+      "dataset_target": 0,
+      "decision_function": -2.0031593158877907,
+      "interpretation": "El modelo rechaza este lugar exterior con pocos servicios y sin soporte para trabajar.",
+      "http_status": 200
+    },
+    {
+      "lugar": "Atrás de servicios",
+      "inputs": {
+        "silencio": 1,
+        "sombra": 0,
+        "aire_acondicionado": 0,
+        "soporte_para_trabajar": 1,
+        "asientos": 1,
+        "asientos_comodos": 1,
+        "enchufes": 0,
+        "flujo_personas": 1,
+        "banos_cerca": 0,
+        "cafeteria_cerca": 1,
+        "internet_wifi": 1
+      },
+      "prediction": "APTO",
+      "dataset_target": 1,
+      "decision_function": 0.0012859602419883487,
+      "interpretation": "Caso discutible: tiene soporte, pero no sombra, aire acondicionado ni enchufes. El modelo coincide con la etiqueta APTO, pero su margen es muy cercano a cero. No debe interpretarse como una garantía de comodidad.",
+      "http_status": 200
+    }
+  ]
+}

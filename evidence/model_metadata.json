@@ -1,0 +1,26 @@
+{
+  "source_notebook": "Proyecto_InteligenciaArtificial (1).ipynb, celdas 7 y 10",
+  "note": "Artefacto reconstruido con el procedimiento del notebook; no existía un joblib previo.",
+  "model": "SVC(kernel=\"linear\")",
+  "preprocessing": "Ninguno; columnas binarias en orden original",
+  "features": [
+    "silencio",
+    "sombra",
+    "aire_acondicionado",
+    "soporte_para_trabajar",
+    "asientos",
+    "asientos_comodos",
+    "enchufes",
+    "flujo_personas",
+    "banos_cerca",
+    "cafeteria_cerca",
+    "internet_wifi"
+  ],
+  "sklearn_version": "1.6.1",
+  "train_rows": 52,
+  "test_rows": 13,
+  "test_accuracy": 1.0,
+  "reload_predictions_equal": true,
+  "dataset_sha256": "c33c27f54f27d1d17d395c4de3850b0ec014833d791830e020e4ee5eacbb58cb",
+  "model_sha256": "86ede73fb77b5b6d11526a32760049c991b1e24789113ea581fb246c20a5548f"
+}

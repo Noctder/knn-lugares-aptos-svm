@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyBot · Encuentra tu lugar</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <header><a class="brand" href="/">▦ StudyBot</a><span>DEL MODELO AL CAMPUS</span></header>
+    <section class="intro"><p class="eyebrow">UN LUGAR PARA CONCENTRARSE</p>
+      <h1>¿Aquí se puede<br>trabajar?</h1>
+      <p>Describe las condiciones de un lugar. StudyBot usará el modelo entrenado para predecir si es apto para trabajar durante 30 minutos.</p>
+    </section>
+    <div class="layout">
+      <section class="card">
+        <h2>Las condiciones del lugar</h2>
+        <p class="hint">Escribe <strong>1</strong> si tiene la característica o <strong>0</strong> si no la tiene. En flujo_personas, conserva la codificación de tu dataset.</p>
+        
+        <form method="post" action="/">
+          <div class="fields">
+          
+            <label for="silencio">silencio
+              <input id="silencio" name="silencio" type="number" min="0" max="1" step="1" required placeholder="0 o 1" value="0">
+            </label>
+          
+            <label for="sombra">sombra
+              <input id="sombra" name="sombra" type="number" min="0" max="1" step="1" required placeholder="0 o 1" value="0">
+            </label>
+          
+            <label for="aire_acondicionado">aire_acondicionado
+              <input id="aire_acondicionado" name="aire_acondicionado" type="number" min="0" max="1" step="1" required placeholder="0 o 1" value="0">
+            </label>
+          
+            <label for="soporte_para_trabajar">soporte_para_trabajar
+              <input id="soporte_para_trabajar" name="soporte_para_trabajar" type="number" min="0" max="1" step="1" required placeholder="0 o 1" value="0">
+            </label>
+          
+            <label for="asientos">asientos
+              <input id="asientos" name="asientos" type="number" min="0" max="1" step="1" required placeholder="0 o 1" value="1">
+            </label>
+          
+            <label for="asientos_comodos">asientos_comodos
+              <input id="asientos_comodos" name="asientos_comodos" type="number" min="0" max="1" step="1" required placeholder="0 o 1" value="0">
+            </label>
+          
+            <label for="enchufes">enchufes
+              <input id="enchufes" name="enchufes" type="number" min="0" max="1" step="1" required placeholder="0 o 1" value="0">
+            </label>
+          
+            <label for="flujo_personas">flujo_personas
+              <input id="flujo_personas" name="flujo_personas" type="number" min="0" max="1" step="1" required placeholder="0 o 1" value="1">
+            </label>
+          
+            <label for="banos_cerca">banos_cerca
+              <input id="banos_cerca" name="banos_cerca" type="number" min="0" max="1" step="1" required placeholder="0 o 1" value="0">
+            </label>
+          
+            <label for="cafeteria_cerca">cafeteria_cerca
+              <input id="cafeteria_cerca" name="cafeteria_cerca" type="number" min="0" max="1" step="1" required placeholder="0 o 1" value="0">
+            </label>
+          
+            <label for="internet_wifi">internet_wifi
+              <input id="internet_wifi" name="internet_wifi" type="number" min="0" max="1" step="1" required placeholder="0 o 1" value="1">
+            </label>
+          
+          </div>
+          <button type="submit">Evaluar lugar</button>
+        </form>
+      </section>
+      <aside class="card output" aria-live="polite">
+        <p class="eyebrow">PREDICCIÓN</p>
+        
+          <div class="result no"><span class="symbol">×</span><h2>NO APTO</h2></div>
+          <p>El modelo no identifica condiciones aptas para trabajar.</p>
+          <p class="hint">Puedes cambiar las entradas y evaluar otro lugar.</p>
+        
+        <div class="model-note"><strong>SVM lineal · Dataset v1.0</strong><p>Una predicción orienta, pero no garantiza las condiciones reales del lugar.</p></div>
+      </aside>
+    </div>
+    <footer>StudyBot · Aprendizaje Artificial · Universidad de Colima</footer>
+  </main>
+</body>
+</html>
