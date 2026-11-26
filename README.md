@@ -67,6 +67,22 @@ La evidencia de las tres combinaciones incluye todas las entradas, resultado, in
 
 Las pruebas comprueban tres predicciones con el artefacto real, campos exactos, entradas ausentes/no numéricas/no finitas/fuera de dominio, ausencia de entrenamiento durante las peticiones y dependencia del resultado respecto a `model.predict()`.
 
+### Capturas de los tres ejemplos
+
+Las capturas muestran las 11 entradas enviadas desde el formulario y el resultado del modelo guardado.
+
+**1. Laboratorio 4 de posgrado — APTO.** Las condiciones coinciden con los patrones aprendidos de lugares aptos.
+
+![Ejemplo 1: Laboratorio 4 de posgrado, entradas y resultado APTO](evidence/prueba_1.jpg)
+
+**2. Bancas verdes centro de idiomas — NO APTO.** El modelo rechaza este lugar con pocos servicios y sin soporte para trabajar.
+
+![Ejemplo 2: Bancas verdes centro de idiomas, entradas y resultado NO APTO](evidence/prueba_2.jpg)
+
+**3. Atrás de servicios — APTO, caso discutible.** Tiene soporte, pero no sombra, aire acondicionado ni enchufes. Su margen SVM es **0.001286**, muy cercano a la frontera de decisión en cero; no es una probabilidad.
+
+![Ejemplo 3: Atrás de servicios, entradas y resultado APTO cercano a la frontera](evidence/prueba_3.jpg)
+
 ## Respuestas breves
 
 **1. ¿Qué contiene studybot_model.joblib?** El objeto SVC lineal entrenado: vectores de soporte, coeficientes, intercepto, clases, parámetros y nombres de las 11 características. En este caso no contiene un escalador porque no se utilizó en el entrenamiento.
